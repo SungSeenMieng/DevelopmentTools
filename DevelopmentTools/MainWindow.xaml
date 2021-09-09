@@ -25,9 +25,9 @@
                             <RowDefinition Height="2*"/>
                             <RowDefinition Height="*"/>
                         </Grid.RowDefinitions>
-                        <TextBlock Text="{Binding ToolName}" TextWrapping="WrapWithOverflow" VerticalAlignment="Center" Foreground="{Binding ForegroundBrush}"/>
-                        <TextBlock Grid.Row="1" TextWrapping="WrapWithOverflow" Text="{Binding ToolDesc}" VerticalAlignment="Center" Foreground="{Binding ForegroundBrush}"/>
-                        <TextBlock Grid.Row="2" Text="{Binding ToolAuthor}" VerticalAlignment="Center" HorizontalAlignment="Right" Foreground="{Binding ForegroundBrush}"/>
+                        <TextBlock FontWeight="SemiBold" FontSize="14" Text="{Binding ToolName}" TextWrapping="WrapWithOverflow" VerticalAlignment="Center" Foreground="{Binding ForegroundBrush}"/>
+                        <TextBlock FontSize="11" Grid.Row="1" TextWrapping="WrapWithOverflow" Text="{Binding ToolDesc}" VerticalAlignment="Center" Foreground="{Binding ForegroundBrush}"/>
+                        <TextBlock FontSize="11" Grid.Row="2" Text="{Binding ToolAuthor}" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0,0,20,0" Foreground="{Binding ForegroundBrush}"/>
                     </Grid>
                 </Grid>
             </Border>
