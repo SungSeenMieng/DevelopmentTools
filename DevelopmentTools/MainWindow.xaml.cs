@@ -19,12 +19,12 @@ namespace DevelopmentTools
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            (this.DataContext as MainViewModel).exit.Execute(this.DataContext);   
+            (this.DataContext as MainViewModel).exit.Execute(this.DataContext);
         }
 
         private void Border_MouseEnter(object sender, MouseEventArgs e)
         {
-            (sender as Border).BorderBrush = new SolidColorBrush(Color.FromRgb(255,255,255));
+            (sender as Border).BorderBrush = new SolidColorBrush(Color.FromRgb(255, 255, 255));
         }
 
         private void Border_MouseLeave(object sender, MouseEventArgs e)
@@ -34,9 +34,17 @@ namespace DevelopmentTools
 
         private void Border_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-            if(e.ClickCount==2)
+            if (e.ClickCount == 2)
             {
-                ((sender as Border).DataContext as ToolModel).instance.ToolWindow.Show();
+                Window window = ((sender as Border).DataContext as ToolModel).instance.ToolWindow;
+                if (window.IsVisible)
+                {
+                    window.Hide();
+                }
+                else
+                {
+                    window.Show();
+                }
             }
         }
 
@@ -57,7 +65,7 @@ namespace DevelopmentTools
                         SystemCommands.MaximizeWindow(this);
                     }
                     break;
-                 
+
                 case "close":
                     SystemCommands.CloseWindow(this);
                     break;

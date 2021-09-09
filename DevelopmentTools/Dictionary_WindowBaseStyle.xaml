@@ -68,7 +68,104 @@
                                 <Rectangle Name="ResizeBottomLeft" Fill="Transparent" Grid.Row="2" Grid.Column="0" Style="{StaticResource ResourceKey=ResizeHandleStyle}"/>
                                 <Rectangle Name="ResizeBottom" Fill="Transparent" Grid.Row="2" Grid.Column="1" Style="{StaticResource ResourceKey=ResizeHandleStyle}"/>
                                 <Rectangle Name="ResizeBottomRight" Fill="Transparent" Grid.Row="2" Grid.Column="2" Style="{StaticResource ResourceKey=ResizeHandleStyle}"/>
-                                <ContentPresenter  Grid.Row="1" Grid.Column="1" Content="{Binding Content, RelativeSource={RelativeSource TemplatedParent}}"/>
+                                <Border Grid.Row="1" Grid.Column="1" Background="#3F3F46" CornerRadius="3">
+                                    <Grid Background="Transparent" Margin="0">
+
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="30"/>
+                                            <RowDefinition/>
+                                        </Grid.RowDefinitions>
+                                        <Grid Background="Transparent" MouseLeftButtonDown="Grid_MouseLeftButtonDown">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="30"/>
+                                                <ColumnDefinition/>
+                                                <ColumnDefinition Width="30"/>
+                                                <ColumnDefinition Width="30"/>
+                                                <ColumnDefinition Width="30"/>
+                                            </Grid.ColumnDefinitions>
+                                            <Border Grid.Column="0" Uid="pin" MouseLeftButtonDown="Window_Button">
+                                                <Border.Style>
+                                                    <Style TargetType="Border">
+                                                        <Style.Triggers>
+                                                            <Trigger Property="IsMouseOver" Value="True">
+                                                                <Trigger.Setters>
+                                                                    <Setter Property="Background" Value="#88000000"/>
+                                                                </Trigger.Setters>
+                                                            </Trigger>
+                                                            <Trigger Property="IsMouseOver" Value="False">
+                                                                <Trigger.Setters>
+                                                                    <Setter Property="Background" Value="Transparent"/>
+                                                                </Trigger.Setters>
+                                                            </Trigger>
+                                                        </Style.Triggers>
+                                                    </Style>
+                                                </Border.Style>
+                                                <Image Width="16" Height="16" Source="/Resources/pin-off.png"/>
+                                            </Border>
+                                            <TextBlock Grid.ColumnSpan="5" Text="{TemplateBinding Title}" Foreground="White" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                                            <Border Grid.Column="2" Uid="mini" MouseLeftButtonDown="Window_Button">
+                                                <Border.Style>
+                                                    <Style TargetType="Border">
+                                                        <Style.Triggers>
+                                                            <Trigger Property="IsMouseOver" Value="True">
+                                                                <Trigger.Setters>
+                                                                    <Setter Property="Background" Value="#88000000"/>
+                                                                </Trigger.Setters>
+                                                            </Trigger>
+                                                            <Trigger Property="IsMouseOver" Value="False">
+                                                                <Trigger.Setters>
+                                                                    <Setter Property="Background" Value="Transparent"/>
+                                                                </Trigger.Setters>
+                                                            </Trigger>
+                                                        </Style.Triggers>
+                                                    </Style>
+                                                </Border.Style>
+                                                <Image Width="16" Height="16" Source="/Resources/window_mini.png"/>
+                                            </Border>
+                                            <Border Grid.Column="3" Uid="max" MouseLeftButtonDown="Window_Button">
+                                                <Border.Style>
+                                                    <Style TargetType="Border">
+                                                        <Style.Triggers>
+                                                            <Trigger Property="IsMouseOver" Value="True">
+                                                                <Trigger.Setters>
+                                                                    <Setter Property="Background" Value="#88000000"/>
+                                                                </Trigger.Setters>
+                                                            </Trigger>
+                                                            <Trigger Property="IsMouseOver" Value="False">
+                                                                <Trigger.Setters>
+                                                                    <Setter Property="Background" Value="Transparent"/>
+                                                                </Trigger.Setters>
+                                                            </Trigger>
+                                                        </Style.Triggers>
+                                                    </Style>
+                                                </Border.Style>
+                                                <Image Width="16" Height="16" Source="/Resources/window_max.png"/>
+                                            </Border>
+                                            <Border Grid.Column="4" Uid="close" MouseLeftButtonDown="Window_Button">
+                                                <Border.Style>
+                                                    <Style TargetType="Border">
+                                                        <Style.Triggers>
+                                                            <Trigger Property="IsMouseOver" Value="True">
+                                                                <Trigger.Setters>
+                                                                    <Setter Property="Background" Value="#88000000"/>
+                                                                </Trigger.Setters>
+                                                            </Trigger>
+                                                            <Trigger Property="IsMouseOver" Value="False">
+                                                                <Trigger.Setters>
+                                                                    <Setter Property="Background" Value="Transparent"/>
+                                                                </Trigger.Setters>
+                                                            </Trigger>
+                                                        </Style.Triggers>
+                                                    </Style>
+                                                </Border.Style>
+                                                <Image Width="16" Height="16" Source="/Resources/window_close.png"/>
+                                            </Border>
+                                        </Grid>
+
+                                        <ContentPresenter  Grid.Row="1" Content="{Binding Content, RelativeSource={RelativeSource TemplatedParent}}"/>
+                                    </Grid>
+                                </Border>
+                             
                             </Grid>
                         </Border>
                     </Grid>
@@ -143,7 +240,103 @@
                                 <Rectangle Name="ResizeBottomLeft" Fill="Transparent" Grid.Row="2" Grid.Column="0" Style="{StaticResource ResourceKey=ResizeHandleStyle}"/>
                                 <Rectangle Name="ResizeBottom" Fill="Transparent" Grid.Row="2" Grid.Column="1" Style="{StaticResource ResourceKey=ResizeHandleStyle}"/>
                                 <Rectangle Name="ResizeBottomRight" Fill="Transparent" Grid.Row="2" Grid.Column="2" Style="{StaticResource ResourceKey=ResizeHandleStyle}"/>
-                                <ContentPresenter  Grid.Row="1" Grid.Column="1" Content="{Binding Content, RelativeSource={RelativeSource TemplatedParent}}"/>
+                                <Border Grid.Row="1" Grid.Column="1" Background="#3F3F46" CornerRadius="3">
+                                    <Grid Background="Transparent" Margin="0">
+
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="30"/>
+                                            <RowDefinition/>
+                                        </Grid.RowDefinitions>
+                                        <Grid Background="Transparent" MouseLeftButtonDown="Grid_MouseLeftButtonDown">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="30"/>
+                                                <ColumnDefinition/>
+                                                <ColumnDefinition Width="30"/>
+                                                <ColumnDefinition Width="30"/>
+                                                <ColumnDefinition Width="30"/>
+                                            </Grid.ColumnDefinitions>
+                                            <Border Grid.Column="0" Uid="pin" MouseLeftButtonDown="Window_Button">
+                                                <Border.Style>
+                                                    <Style TargetType="Border">
+                                                        <Style.Triggers>
+                                                            <Trigger Property="IsMouseOver" Value="True">
+                                                                <Trigger.Setters>
+                                                                    <Setter Property="Background" Value="#88000000"/>
+                                                                </Trigger.Setters>
+                                                            </Trigger>
+                                                            <Trigger Property="IsMouseOver" Value="False">
+                                                                <Trigger.Setters>
+                                                                    <Setter Property="Background" Value="Transparent"/>
+                                                                </Trigger.Setters>
+                                                            </Trigger>
+                                                        </Style.Triggers>
+                                                    </Style>
+                                                </Border.Style>
+                                                <Image Width="16" Height="16" Source="/Resources/pin-off.png"/>
+                                            </Border>
+                                            <TextBlock Grid.ColumnSpan="5" Text="{TemplateBinding Title}" Foreground="White" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                                            <Border Grid.Column="2" Uid="mini" MouseLeftButtonDown="Window_Button">
+                                                <Border.Style>
+                                                    <Style TargetType="Border">
+                                                        <Style.Triggers>
+                                                            <Trigger Property="IsMouseOver" Value="True">
+                                                                <Trigger.Setters>
+                                                                    <Setter Property="Background" Value="#88000000"/>
+                                                                </Trigger.Setters>
+                                                            </Trigger>
+                                                            <Trigger Property="IsMouseOver" Value="False">
+                                                                <Trigger.Setters>
+                                                                    <Setter Property="Background" Value="Transparent"/>
+                                                                </Trigger.Setters>
+                                                            </Trigger>
+                                                        </Style.Triggers>
+                                                    </Style>
+                                                </Border.Style>
+                                                <Image Width="16" Height="16" Source="/Resources/window_mini.png"/>
+                                            </Border>
+                                            <Border Grid.Column="3" Uid="max" MouseLeftButtonDown="Window_Button">
+                                                <Border.Style>
+                                                    <Style TargetType="Border">
+                                                        <Style.Triggers>
+                                                            <Trigger Property="IsMouseOver" Value="True">
+                                                                <Trigger.Setters>
+                                                                    <Setter Property="Background" Value="#88000000"/>
+                                                                </Trigger.Setters>
+                                                            </Trigger>
+                                                            <Trigger Property="IsMouseOver" Value="False">
+                                                                <Trigger.Setters>
+                                                                    <Setter Property="Background" Value="Transparent"/>
+                                                                </Trigger.Setters>
+                                                            </Trigger>
+                                                        </Style.Triggers>
+                                                    </Style>
+                                                </Border.Style>
+                                                <Image Width="16" Height="16" Source="/Resources/window_max.png"/>
+                                            </Border>
+                                            <Border Grid.Column="4" Uid="close" MouseLeftButtonDown="Window_Button">
+                                                <Border.Style>
+                                                    <Style TargetType="Border">
+                                                        <Style.Triggers>
+                                                            <Trigger Property="IsMouseOver" Value="True">
+                                                                <Trigger.Setters>
+                                                                    <Setter Property="Background" Value="#88000000"/>
+                                                                </Trigger.Setters>
+                                                            </Trigger>
+                                                            <Trigger Property="IsMouseOver" Value="False">
+                                                                <Trigger.Setters>
+                                                                    <Setter Property="Background" Value="Transparent"/>
+                                                                </Trigger.Setters>
+                                                            </Trigger>
+                                                        </Style.Triggers>
+                                                    </Style>
+                                                </Border.Style>
+                                                <Image Width="16" Height="16" Source="/Resources/window_close.png"/>
+                                            </Border>
+                                        </Grid>
+
+                                        <ContentPresenter  Grid.Row="1" Content="{Binding Content, RelativeSource={RelativeSource TemplatedParent}}"/>
+                                    </Grid>
+                                </Border>
                             </Grid>
                         </Border>
                     </Grid>

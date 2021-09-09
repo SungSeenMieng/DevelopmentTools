@@ -7,6 +7,7 @@ using System.Windows.Input;
 using System.Windows.Interop;
 using System.Windows.Media;
 using System.Windows.Media.Animation;
+using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
 namespace DevelopmentTools
@@ -132,7 +133,57 @@ namespace DevelopmentTools
 
         }
 
+        private void Window_Button(object sender, MouseButtonEventArgs e)
+        {
+            switch ((sender as Border).Uid)
+            {
+                case "pin":
+                    Window.GetWindow(sender as Border).Topmost = !Window.GetWindow(sender as Border).Topmost;
+                    if (Window.GetWindow(sender as Border).Topmost)
+                    {
+                        ((sender as Border).Child as Image).Source = new BitmapImage(new Uri("/Resources/pinned.png",UriKind.Relative));
+                    }
+                    else
+                    {
+                        ((sender as Border).Child as Image).Source = new BitmapImage(new Uri("/Resources/pin-off.png", UriKind.Relative));
+                    }
+                    break;
+                case "mini":
+                    SystemCommands.MinimizeWindow(Window.GetWindow(sender as Border));
+                    break;
+                case "max":
+                    if (Window.GetWindow(sender as Border).WindowState == WindowState.Maximized)
+                    {
+                        SystemCommands.RestoreWindow(Window.GetWindow(sender as Border));
+                    }
+                    else
+                    {
+                        SystemCommands.MaximizeWindow(Window.GetWindow(sender as Border));
+                    }
+                    break;
 
+                case "close":
+                    SystemCommands.CloseWindow(Window.GetWindow(sender as Border));
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        private void Grid_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            if (e.ClickCount == 2)
+            {
+                if (Window.GetWindow(sender as Grid).WindowState == WindowState.Maximized)
+                {
+                    SystemCommands.RestoreWindow(Window.GetWindow(sender as Grid));
+                }
+                else
+                {
+                    SystemCommands.MaximizeWindow(Window.GetWindow(sender as Grid));
+                }
+            }
+        }
         private void Window_GotFocus(object sender, RoutedEventArgs e)
         {
          

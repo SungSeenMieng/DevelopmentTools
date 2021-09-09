@@ -49,8 +49,10 @@ namespace DevelopmentTools
                         tool.BackgroundBrush = new System.Windows.Media.SolidColorBrush(obj.ToolThemeColor);
                         tool.ForegroundBrush = new SolidColorBrush(GetForegroundColor(obj.ToolThemeColor));
                         obj.ToolWindow.Closing += ToolWindow_Closing;
-                        obj.ToolWindow.Topmost = true;
+                        obj.ToolWindow.Topmost = false;
                         obj.ToolWindow.WindowStartupLocation = WindowStartupLocation.CenterScreen;
+                        obj.ToolWindow.Style = (Style)window.FindResource("WindowBaseStyleWithScaleAnimation");
+                        obj.ToolWindow.Foreground = new SolidColorBrush(Color.FromRgb(255,255,255));
                         tool.instance = obj;
                         tools.Add(tool);
                     }
