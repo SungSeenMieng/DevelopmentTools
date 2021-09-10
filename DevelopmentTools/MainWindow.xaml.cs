@@ -65,6 +65,22 @@ namespace DevelopmentTools
             //(sender as Window).Hide();
         }
 
+        private void Window_SizeChanged(object sender, SizeChangedEventArgs e)
+        {
+            var key = ToolsList.ItemTemplate.DataTemplateKey;
+            if (this.ActualWidth < 360)
+            {
+               
+                ToolsList.ItemTemplate = (DataTemplate)this.FindResource("ToolViewSmall");
+                ToolsList.ItemContainerStyle = (Style)this.FindResource("SmallStyle");
 
+            }
+            else
+            {
+
+                ToolsList.ItemTemplate = (DataTemplate)this.FindResource("ToolViewTile");
+                ToolsList.ItemContainerStyle = (Style)this.FindResource("TileStyle");
+            }
+        }
     }
 }
