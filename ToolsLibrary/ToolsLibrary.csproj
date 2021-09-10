@@ -53,6 +53,14 @@
     <Compile Include="IcoMaker\Window_IcoMaker.xaml.cs">
       <DependentUpon>Window_IcoMaker.xaml</DependentUpon>
     </Compile>
+    <Compile Include="NetEaseCloudMusicConverter\ViewModel_NCMConverter.cs" />
+    <Compile Include="NetEaseCloudMusicConverter\Window_NCMConverter.xaml.cs">
+      <DependentUpon>Window_NCMConverter.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="PaintBoard\ViewModel_PaintBoard.cs" />
+    <Compile Include="PaintBoard\Window_PaintBoard.xaml.cs">
+      <DependentUpon>Window_PaintBoard.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -67,6 +75,14 @@
     <Page Include="IcoMaker\Window_IcoMaker.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="NetEaseCloudMusicConverter\Window_NCMConverter.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="PaintBoard\Window_PaintBoard.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="TimeLines\Window_TimeLines.xaml">
       <SubType>Designer</SubType>
@@ -91,6 +107,17 @@
   <ItemGroup>
     <Resource Include="Resources\IcoMaker.png" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Resource Include="Resources\netease-cloud-music.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="NetEaseCloudMusicConverter\extern\ffmpeg.exe">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="NetEaseCloudMusicConverter\extern\ncmtrans.exe">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Resource Include="Resources\drawing-board.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

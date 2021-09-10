@@ -34,7 +34,7 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type Window}">
-                    <Grid>
+                    <Grid x:Name="WindowGrid">
                         <Grid.RowDefinitions>
                             <RowDefinition Height="8"/>
                             <RowDefinition/>
@@ -179,16 +179,15 @@
         <Setter Property="Background" Value="{x:Null}"/>
         <Setter Property="SnapsToDevicePixels" Value="True"/>
         <Setter Property="UseLayoutRounding" Value="True"/>
+        
         <EventSetter Event="Loaded"  Handler="Window_Loaded"/>
         <EventSetter Event="GotFocus" Handler="Window_GotFocus"/>
         <EventSetter Event="MouseLeftButtonDown" Handler="Window_MouseLeftButtonDown"/>
-        
-        <EventSetter Event="Unloaded" Handler="Window_Unloaded"/>
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type Window}">
                     
-                    <Grid RenderTransformOrigin="0.5,0.5">
+                    <Grid x:Name="WindowGrid" RenderTransformOrigin="0.5,0.5">
                         <Grid.RenderTransform>
                             <ScaleTransform x:Name="scale" ScaleX="1" ScaleY="1" />
                         </Grid.RenderTransform>

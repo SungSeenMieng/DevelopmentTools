@@ -23,6 +23,11 @@ namespace DevelopmentTools.Tools.IcoMaker
         {
             get
             {
+                if (window == null||!window.IsLoaded)
+                {
+                    window = new Window_IcoMaker();
+                    window.DataContext = this;
+                }
                 return window;
             }
         }
@@ -144,8 +149,7 @@ namespace DevelopmentTools.Tools.IcoMaker
   
         public ViewModel_IcoMaker()
         {
-            window = new Window_IcoMaker();
-            window.DataContext = this;
+
         }
     }
 }

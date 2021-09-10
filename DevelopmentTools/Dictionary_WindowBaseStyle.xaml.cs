@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Runtime.InteropServices;
+using System.Timers;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -76,19 +77,29 @@ namespace DevelopmentTools
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
+            (sender as Window).Closing += Dictionary_WindowBaseStyle_Closing;
             (sender as Window).MouseMove += new MouseEventHandler(Window_MouseMove);
+        }
+
+        private void Dictionary_WindowBaseStyle_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            if ((sender as Window).Uid != "Exit")
+            {
+                e.Cancel = true;
+                StaticFunction.CloseAnimation(sender as Window);
+            }
         }
 
         private void Window_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-            if (e.LeftButton == MouseButtonState.Pressed&&(sender as Window).IsEnabled)
+            if (e.LeftButton == MouseButtonState.Pressed && (sender as Window).IsEnabled)
             {
                 GetCursorPos(out POINT pt);
-                
+
                 var bounds = System.Windows.Forms.Screen.FromPoint(new System.Drawing.Point(pt.X, pt.Y)).WorkingArea;
-                (sender as Window).MaxHeight = bounds.Height+15;
-                (sender as Window).MaxWidth = bounds.Width+20;
-               (sender as Window).DragMove();
+                (sender as Window).MaxHeight = bounds.Height + 15;
+                (sender as Window).MaxWidth = bounds.Width + 20;
+                (sender as Window).DragMove();
             }
         }
         public struct POINT
@@ -113,23 +124,12 @@ namespace DevelopmentTools
 
             if ((sender as PasswordBox).Password.Length == 0)
             {
-                (sender as PasswordBox).Background =(sender as PasswordBox).Resources["HintText"] as VisualBrush;
+                (sender as PasswordBox).Background = (sender as PasswordBox).Resources["HintText"] as VisualBrush;
             }
             else
             {
                 (sender as PasswordBox).Background = null;
             }
-
-        }
-
-        private void Window_Unloaded(object sender, RoutedEventArgs e)
-        {
-            ScaleTransform rtf = new ScaleTransform();
-             (sender as Window).RenderTransform = rtf;
-            DoubleAnimation animation = new DoubleAnimation(1, 0, new Duration(TimeSpan.FromMilliseconds(200)));
-            animation.AutoReverse = false;
-            rtf.BeginAnimation(ScaleTransform.ScaleXProperty,animation);
-            rtf.BeginAnimation(ScaleTransform.ScaleYProperty, animation);
 
         }
 
@@ -141,7 +141,7 @@ namespace DevelopmentTools
                     Window.GetWindow(sender as Border).Topmost = !Window.GetWindow(sender as Border).Topmost;
                     if (Window.GetWindow(sender as Border).Topmost)
                     {
-                        ((sender as Border).Child as Image).Source = new BitmapImage(new Uri("/Resources/pinned.png",UriKind.Relative));
+                        ((sender as Border).Child as Image).Source = new BitmapImage(new Uri("/Resources/pinned.png", UriKind.Relative));
                     }
                     else
                     {
@@ -163,6 +163,7 @@ namespace DevelopmentTools
                     break;
 
                 case "close":
+                    //StaticFunction.CloseAnimation(Window.GetWindow(sender as Border));
                     SystemCommands.CloseWindow(Window.GetWindow(sender as Border));
                     break;
                 default:
@@ -186,9 +187,61 @@ namespace DevelopmentTools
         }
         private void Window_GotFocus(object sender, RoutedEventArgs e)
         {
-         
+
         }
     }
-   
-  
+    public static class StaticFunction
+    {
+        public static void CloseAnimation(Window window)
+        {
+            Grid grid = ((window.Template as ControlTemplate).FindName("WindowGrid", window) as Grid);
+            ScaleTransform rtf = new ScaleTransform();
+            rtf.CenterX = 0.5;
+            rtf.CenterY = 0.5;
+            rtf.ScaleX = 1;
+            rtf.ScaleY = 1;
+            Storyboard sb = new Storyboard();
+            DependencyProperty[] propertyChainx = new DependencyProperty[]
+          {
+                Grid.RenderTransformProperty,
+                ScaleTransform.ScaleXProperty
+          };
+            DependencyProperty[] propertyChainy = new DependencyProperty[]
+       {
+                Grid.RenderTransformProperty,
+                ScaleTransform.ScaleYProperty
+       };
+            grid.RenderTransform = rtf;
+
+
+            DoubleAnimation animationx = new DoubleAnimation(1, 0, new Duration(TimeSpan.FromMilliseconds(200)));
+            DoubleAnimation animationy = new DoubleAnimation(1, 0, new Duration(TimeSpan.FromMilliseconds(200)));
+            animationx.AutoReverse = false;
+            animationy.AutoReverse = false;
+            Storyboard.SetTarget(animationx, grid);
+            Storyboard.SetTarget(animationy, grid);
+            Storyboard.SetTargetProperty(animationx, new PropertyPath("(0).(1)", propertyChainx));
+            Storyboard.SetTargetProperty(animationy, new PropertyPath("(0).(1)", propertyChainy));
+            //Storyboard.SetTargetProperty(animation, new PropertyPath(ScaleTransform.ScaleYProperty));
+            sb.Children.Add(animationx);
+            sb.Children.Add(animationy);
+            sb.Completed += new EventHandler((a, b) =>
+            {
+                Timer timer;
+                timer = new Timer();
+                timer.Interval = 200;
+                timer.Elapsed += new ElapsedEventHandler((c, d) =>
+                {
+                    window.Dispatcher.Invoke(new Action(() =>
+                    {
+                        window.Uid = "Exit";
+                        SystemCommands.CloseWindow(window);
+                    }));
+                });
+                timer.Start();
+            });
+            sb.Begin();
+        }
+    }
+
 }

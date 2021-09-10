@@ -73,9 +73,29 @@ namespace DevelopmentTools.Tools.Properties {
         /// <summary>
         ///   查找 System.Drawing.Bitmap 类型的本地化资源。
         /// </summary>
+        internal static System.Drawing.Bitmap drawing_board {
+            get {
+                object obj = ResourceManager.GetObject("drawing_board", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
         internal static System.Drawing.Bitmap IcoMaker {
             get {
                 object obj = ResourceManager.GetObject("IcoMaker", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
+        internal static System.Drawing.Bitmap netease_cloud_music {
+            get {
+                object obj = ResourceManager.GetObject("netease_cloud_music", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

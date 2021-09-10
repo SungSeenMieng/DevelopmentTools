@@ -9,7 +9,14 @@ namespace DevelopmentTools
     {
         protected override void OnStartup(StartupEventArgs e)
         {
+            App.Current.DispatcherUnhandledException += Current_DispatcherUnhandledException;
+           
             MainViewModel main = new MainViewModel();
+        }
+
+        private void Current_DispatcherUnhandledException(object sender, System.Windows.Threading.DispatcherUnhandledExceptionEventArgs e)
+        {
+           
         }
     }
 }

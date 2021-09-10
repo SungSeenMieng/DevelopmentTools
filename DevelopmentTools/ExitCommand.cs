@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Windows;
 using System.Windows.Input;
 
 namespace DevelopmentTools
@@ -16,7 +17,6 @@ namespace DevelopmentTools
         {
             foreach (var tool in (parameter as MainViewModel).tools)
             {
-                tool.instance.ToolWindow.Closing -= (parameter as MainViewModel).ToolWindow_Closing;
                 tool.instance.ToolWindow.Close();
             }
         }

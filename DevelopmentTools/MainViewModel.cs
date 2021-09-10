@@ -11,7 +11,7 @@ namespace DevelopmentTools
 {
     public class MainViewModel
     {
-        MainWindow window;
+        public MainWindow window;
         public BindingList<ToolModel> tools { get; set; }
         public ExitCommand exit { get; set; } = new ExitCommand();
         public MainViewModel()
@@ -48,11 +48,7 @@ namespace DevelopmentTools
                         tool.ToolAuthor = obj.ToolAuthor;
                         tool.BackgroundBrush = new System.Windows.Media.SolidColorBrush(obj.ToolThemeColor);
                         tool.ForegroundBrush = new SolidColorBrush(GetForegroundColor(obj.ToolThemeColor));
-                        obj.ToolWindow.Closing += ToolWindow_Closing;
-                        obj.ToolWindow.Topmost = false;
-                        obj.ToolWindow.WindowStartupLocation = WindowStartupLocation.CenterScreen;
-                        obj.ToolWindow.Style = (Style)window.FindResource("WindowBaseStyleWithScaleAnimation");
-                        obj.ToolWindow.Foreground = new SolidColorBrush(Color.FromRgb(255,255,255));
+                      
                         tool.instance = obj;
                         tools.Add(tool);
                     }
@@ -62,11 +58,7 @@ namespace DevelopmentTools
             window.Show();
         }
 
-        public void ToolWindow_Closing(object sender, CancelEventArgs e)
-        {
-            e.Cancel = true;
-            (sender as Window).Hide();
-        }
+
 
         private Color GetForegroundColor(Color Bgcolor)
         {

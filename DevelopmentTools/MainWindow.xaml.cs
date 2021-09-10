@@ -1,5 +1,6 @@
 ﻿using DevelopmentTools.Base;
 using System;
+using System.ComponentModel;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -37,56 +38,33 @@ namespace DevelopmentTools
             if (e.ClickCount == 2)
             {
                 Window window = ((sender as Border).DataContext as ToolModel).instance.ToolWindow;
+
+                if (!window.IsLoaded)
+                {
+                    window.Topmost = false;
+                    window.WindowStartupLocation = WindowStartupLocation.CenterScreen;
+                    window.Style = (Style)this.FindResource("WindowBaseStyleWithScaleAnimation");
+                    window.Foreground = new SolidColorBrush(Color.FromRgb(255, 255, 255));
+                }
+                window.Topmost = this.Topmost;
                 if (window.IsVisible)
                 {
-                    window.Hide();
+                    window.Close();
                 }
                 else
                 {
                     window.Show();
+
                 }
+                e.Handled = true;
             }
         }
-
-        private void Window_Button(object sender, MouseButtonEventArgs e)
+        public void ToolWindow_Closing(object sender, CancelEventArgs e)
         {
-            switch ((sender as Border).Uid)
-            {
-                case "mini":
-                    SystemCommands.MinimizeWindow(this);
-                    break;
-                case "max":
-                    if (this.WindowState == WindowState.Maximized)
-                    {
-                        SystemCommands.RestoreWindow(this);
-                    }
-                    else
-                    {
-                        SystemCommands.MaximizeWindow(this);
-                    }
-                    break;
-
-                case "close":
-                    SystemCommands.CloseWindow(this);
-                    break;
-                default:
-                    break;
-            }
+            //e.Cancel = true;
+            //(sender as Window).Hide();
         }
 
-        private void Grid_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
-        {
-            if (e.ClickCount == 2)
-            {
-                if (this.WindowState == WindowState.Maximized)
-                {
-                    SystemCommands.RestoreWindow(this);
-                }
-                else
-                {
-                    SystemCommands.MaximizeWindow(this);
-                }
-            }
-        }
+
     }
 }
