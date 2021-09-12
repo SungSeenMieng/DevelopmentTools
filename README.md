@@ -14,3 +14,4 @@ Properties in IToolBaseInfo interface:
  4. ToolIcon        Tool's icon showed in main window
  5. ToolAuthor      Tool's author
  6. ToolThemeColor  Tool's theme color displayed in main window
+![image](https://user-images.githubusercontent.com/66509354/132986323-acb3efa0-1e46-4e8d-bf25-245be3d9d8d4.png)
