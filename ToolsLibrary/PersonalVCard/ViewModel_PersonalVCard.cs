@@ -115,6 +115,6 @@ namespace DevelopmentTools.Tools.PersonalVCard
                 _ItemValue = value;
                 OnPropertyChanged("ItemValue");
             }
-        }.
+        }
     }
 }
