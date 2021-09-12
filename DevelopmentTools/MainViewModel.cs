@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Reflection;
+using System.Threading;
 using System.Windows;
 using System.Windows.Media;
 
@@ -48,18 +49,16 @@ namespace DevelopmentTools
                         tool.ToolAuthor = obj.ToolAuthor;
                         tool.BackgroundBrush = new System.Windows.Media.SolidColorBrush(obj.ToolThemeColor);
                         tool.ForegroundBrush = new SolidColorBrush(GetForegroundColor(obj.ToolThemeColor));
-                      
+
                         tool.instance = obj;
                         tools.Add(tool);
+
                     }
                 }
             }
             window.DataContext = this;
             window.Show();
         }
-
-
-
         private Color GetForegroundColor(Color Bgcolor)
         {
             var Y = 0.299 * Bgcolor.R + 0.587 * Bgcolor.G + 0.114 * Bgcolor.B;
@@ -74,7 +73,7 @@ namespace DevelopmentTools
         }
         private Type[] GetTypesInNamespace(Assembly assembly, string nameSpace)
         {
-            return assembly.GetTypes().Where(t => t.Namespace.Contains(nameSpace)).ToArray();
+            return assembly.GetTypes().Where(t => t.Namespace != null && t.Namespace.Contains(nameSpace)).ToArray();
         }
     }
 }

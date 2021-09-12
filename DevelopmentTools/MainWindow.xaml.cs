@@ -5,6 +5,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
+using System.Windows.Media.Animation;
 
 namespace DevelopmentTools
 {
@@ -25,12 +26,77 @@ namespace DevelopmentTools
 
         private void Border_MouseEnter(object sender, MouseEventArgs e)
         {
-            (sender as Border).BorderBrush = new SolidColorBrush(Color.FromRgb(255, 255, 255));
+            ScaleTransform rtf = new ScaleTransform();
+            rtf.CenterX = 0.5;
+            rtf.CenterY = 0.5;
+            rtf.ScaleX = 1;
+            rtf.ScaleY = 1;
+            Storyboard sb = new Storyboard();
+            DependencyProperty[] propertyChainx = new DependencyProperty[]
+          {
+                Grid.RenderTransformProperty,
+                ScaleTransform.ScaleXProperty
+          };
+            DependencyProperty[] propertyChainy = new DependencyProperty[]
+       {
+                Grid.RenderTransformProperty,
+                ScaleTransform.ScaleYProperty
+       };
+            (sender as Border).RenderTransform = rtf;
+
+
+            DoubleAnimation animationx = new DoubleAnimation(1, 1.02, new Duration(TimeSpan.FromMilliseconds(100)));
+            DoubleAnimation animationy = new DoubleAnimation(1, 1.02, new Duration(TimeSpan.FromMilliseconds(100)));
+            animationx.AutoReverse = false;
+            animationy.AutoReverse = false;
+            Storyboard.SetTarget(animationx, (sender as Border));
+            Storyboard.SetTarget(animationy, (sender as Border));
+            Storyboard.SetTargetProperty(animationx, new PropertyPath("(0).(1)", propertyChainx));
+            Storyboard.SetTargetProperty(animationy, new PropertyPath("(0).(1)", propertyChainy));
+            //Storyboard.SetTargetProperty(animation, new PropertyPath(ScaleTransform.ScaleYProperty));
+            sb.Children.Add(animationx);
+            sb.Children.Add(animationy);
+            sb.Completed += (a, b) => { (sender as Border).BorderBrush = new SolidColorBrush(Color.FromRgb(255, 255, 255)); };
+            sb.Begin();
+          
+          
+
         }
 
         private void Border_MouseLeave(object sender, MouseEventArgs e)
         {
-            (sender as Border).BorderBrush = null;
+            ScaleTransform rtf = new ScaleTransform();
+            rtf.CenterX = 0.5;
+            rtf.CenterY = 0.5;
+            rtf.ScaleX = 1.02;
+            rtf.ScaleY = 1.02;
+            Storyboard sb = new Storyboard();
+            DependencyProperty[] propertyChainx = new DependencyProperty[]
+          {
+                Grid.RenderTransformProperty,
+                ScaleTransform.ScaleXProperty
+          };
+            DependencyProperty[] propertyChainy = new DependencyProperty[]
+       {
+                Grid.RenderTransformProperty,
+                ScaleTransform.ScaleYProperty
+       };
+            (sender as Border).RenderTransform = rtf;
+
+
+            DoubleAnimation animationx = new DoubleAnimation(1.02, 1, new Duration(TimeSpan.FromMilliseconds(100)));
+            DoubleAnimation animationy = new DoubleAnimation(1.02, 1, new Duration(TimeSpan.FromMilliseconds(100)));
+            animationx.AutoReverse = false;
+            animationy.AutoReverse = false;
+            Storyboard.SetTarget(animationx, (sender as Border));
+            Storyboard.SetTarget(animationy, (sender as Border));
+            Storyboard.SetTargetProperty(animationx, new PropertyPath("(0).(1)", propertyChainx));
+            Storyboard.SetTargetProperty(animationy, new PropertyPath("(0).(1)", propertyChainy));
+            //Storyboard.SetTargetProperty(animation, new PropertyPath(ScaleTransform.ScaleYProperty));
+            sb.Children.Add(animationx);
+            sb.Children.Add(animationy);
+            sb.Completed += (a, b) => { (sender as Border).BorderBrush = null; };
+            sb.Begin();
         }
 
         private void Border_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
@@ -68,18 +134,46 @@ namespace DevelopmentTools
         private void Window_SizeChanged(object sender, SizeChangedEventArgs e)
         {
             var key = ToolsList.ItemTemplate.DataTemplateKey;
-            if (this.ActualWidth < 360)
+            if (this.ActualWidth < 383)
             {
-               
-                ToolsList.ItemTemplate = (DataTemplate)this.FindResource("ToolViewSmall");
-                ToolsList.ItemContainerStyle = (Style)this.FindResource("SmallStyle");
-
+                this.Title = "";
             }
             else
             {
+                this.Title = "Development Tools";
+            }
+            if (this.ActualWidth < 383)
+            {
+                ToolsList.ItemTemplate = (DataTemplate)this.FindResource("ToolViewTiny");
+                ToolsList.ItemContainerStyle = (Style)this.FindResource("TinyStyle");
+            }
+            else if (this.ActualWidth < 985)
+            {
+                if (this.ActualHeight < 210)
+                {
+                    ToolsList.ItemTemplate = (DataTemplate)this.FindResource("ToolViewTiny");
+                    ToolsList.ItemContainerStyle = (Style)this.FindResource("TinyStyle");
+                }
+                else
+                {
+                    ToolsList.ItemTemplate = (DataTemplate)this.FindResource("ToolViewSmall");
+                    ToolsList.ItemContainerStyle = (Style)this.FindResource("SmallStyle");
+                }
+            }
+            else
+            {
+               
+                if (this.ActualHeight > 580)
+                {
+                    ToolsList.ItemTemplate = (DataTemplate)this.FindResource("ToolViewLarge");
+                    ToolsList.ItemContainerStyle = (Style)this.FindResource("LargeStyle");
+                }
+                else
+                {
+                    ToolsList.ItemTemplate = (DataTemplate)this.FindResource("ToolViewTile");
+                    ToolsList.ItemContainerStyle = (Style)this.FindResource("TileStyle");
+                }
 
-                ToolsList.ItemTemplate = (DataTemplate)this.FindResource("ToolViewTile");
-                ToolsList.ItemContainerStyle = (Style)this.FindResource("TileStyle");
             }
         }
     }

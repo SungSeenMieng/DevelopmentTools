@@ -79,6 +79,11 @@ namespace DevelopmentTools
         {
             (sender as Window).Closing += Dictionary_WindowBaseStyle_Closing;
             (sender as Window).MouseMove += new MouseEventHandler(Window_MouseMove);
+            (sender as Window).StateChanged += Dictionary_WindowBaseStyle_StateChanged;
+        }
+
+        private void Dictionary_WindowBaseStyle_StateChanged(object sender, EventArgs e)
+        {
         }
 
         private void Dictionary_WindowBaseStyle_Closing(object sender, System.ComponentModel.CancelEventArgs e)

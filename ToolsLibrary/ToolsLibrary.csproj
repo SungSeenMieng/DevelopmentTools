@@ -37,6 +37,7 @@
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Management" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xaml" />
     <Reference Include="System.Xml.Linq" />
@@ -53,6 +54,10 @@
     <Compile Include="IcoMaker\Window_IcoMaker.xaml.cs">
       <DependentUpon>Window_IcoMaker.xaml</DependentUpon>
     </Compile>
+    <Compile Include="LocalPortsReviewer\ViewModel_LocalPortsReviewer.cs" />
+    <Compile Include="LocalPortsReviewer\Window_LocalPortsReviewer.xaml.cs">
+      <DependentUpon>Window_LocalPortsReviewer.xaml</DependentUpon>
+    </Compile>
     <Compile Include="NetEaseCloudMusicConverter\ViewModel_NCMConverter.cs" />
     <Compile Include="NetEaseCloudMusicConverter\Window_NCMConverter.xaml.cs">
       <DependentUpon>Window_NCMConverter.xaml</DependentUpon>
@@ -60,6 +65,10 @@
     <Compile Include="PaintBoard\ViewModel_PaintBoard.cs" />
     <Compile Include="PaintBoard\Window_PaintBoard.xaml.cs">
       <DependentUpon>Window_PaintBoard.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="PersonalVCard\ViewModel_PersonalVCard.cs" />
+    <Compile Include="PersonalVCard\Window_PersonalVCard.xaml.cs">
+      <DependentUpon>Window_PersonalVCard.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
@@ -76,11 +85,19 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="LocalPortsReviewer\Window_LocalPortsReviewer.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="NetEaseCloudMusicConverter\Window_NCMConverter.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="PaintBoard\Window_PaintBoard.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="PersonalVCard\Window_PersonalVCard.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -117,6 +134,8 @@
     <Content Include="NetEaseCloudMusicConverter\extern\ncmtrans.exe">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Resource Include="Resources\PersonalVCard.png" />
+    <Resource Include="Resources\LocalPortsReviewer.png" />
     <Resource Include="Resources\drawing-board.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

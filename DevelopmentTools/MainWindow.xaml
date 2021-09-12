@@ -4,33 +4,90 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:DevelopmentTools"
+  xmlns:winForms="clr-namespace:System.Windows.Forms;assembly=System.Windows.Forms"
         mc:Ignorable="d"
-        Title="Development Tools" Height="450" Width="990" WindowStartupLocation="CenterScreen" Closing="Window_Closing" Style="{StaticResource WindowBaseStyleWithScaleAnimation}" Icon="/Resources/Icon.ico" MinHeight="300" MinWidth="330" SizeChanged="Window_SizeChanged">
+        Title="Development Tools" Height="450" Width="990" WindowStartupLocation="CenterScreen" Closing="Window_Closing" Style="{StaticResource WindowBaseStyleWithScaleAnimation}" Icon="/Resources/Icon.ico" MinHeight="173" MinWidth="145" SizeChanged="Window_SizeChanged">
     
     <Window.Resources>
-        <DataTemplate x:Key="ToolViewSmall">
-            <Border Width="120" Height="140" CornerRadius="5" BorderBrush="{x:Null}" BorderThickness="2" Background="{Binding BackgroundBrush}" MouseEnter="Border_MouseEnter" MouseLeave="Border_MouseLeave" MouseLeftButtonDown="Border_MouseLeftButtonDown">
+        <DataTemplate x:Key="ToolViewTiny">
+            <Border Width="40" Height="40" CornerRadius="5" BorderBrush="{x:Null}" RenderTransformOrigin="0.5,0.5" BorderThickness="2" Background="{Binding BackgroundBrush}" MouseEnter="Border_MouseEnter" MouseLeave="Border_MouseLeave" MouseLeftButtonDown="Border_MouseLeftButtonDown">
                 <Border.Effect>
                     <DropShadowEffect ShadowDepth="0" BlurRadius="13" Opacity="0.95"/>
                 </Border.Effect>
+                <Border.ToolTip>
+                    <StackPanel>
+                        <TextBlock Text="{Binding ToolName}" HorizontalAlignment="Center" FontWeight="SemiBold" FontSize="13"/>
+                        <TextBlock Text="{Binding ToolDesc}" HorizontalAlignment="Center" FontSize="11"/>
+                        <TextBlock Text="{Binding ToolAuthor}" HorizontalAlignment="Center" FontSize="11"/>
+                    </StackPanel>
+                </Border.ToolTip>
+                <Border.RenderTransform>
+                    <ScaleTransform ScaleX="1" ScaleY="1"/>
+                </Border.RenderTransform>
+                <Image Width="30" Height="30" Source="{Binding ToolIcon}"/>
+            </Border>
+        </DataTemplate>
+        <DataTemplate x:Key="ToolViewSmall">
+            <Border Width="100" Height="120" CornerRadius="5" BorderBrush="{x:Null}" RenderTransformOrigin="0.5,0.5" BorderThickness="2" Background="{Binding BackgroundBrush}" MouseEnter="Border_MouseEnter" MouseLeave="Border_MouseLeave" MouseLeftButtonDown="Border_MouseLeftButtonDown">
+                <Border.Effect>
+                    <DropShadowEffect ShadowDepth="0" BlurRadius="13" Opacity="0.95"/>
+                </Border.Effect>
+                <Border.ToolTip>
+                    <StackPanel>
+                        <TextBlock Text="{Binding ToolDesc}" HorizontalAlignment="Center"/>
+                        <TextBlock Text="{Binding ToolAuthor}" HorizontalAlignment="Center"/>
+                    </StackPanel>
+                </Border.ToolTip>
+                <Border.RenderTransform>
+                    <ScaleTransform ScaleX="1" ScaleY="1"/>
+                </Border.RenderTransform>
                 <Grid Margin="3">
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="80"/>
+                        <RowDefinition Height="60"/>
                         <RowDefinition/>
                     </Grid.RowDefinitions>
-                    <Image Grid.Row="0" Width="50" Height="50" Source="{Binding ToolIcon}"/>
+                    <Image Grid.Row="0" Width="40" Height="50" Source="{Binding ToolIcon}"/>
                     <Grid Grid.Row="1">
-
-                        <TextBlock FontWeight="SemiBold" FontSize="14" Text="{Binding ToolName}"  HorizontalAlignment="Center" TextWrapping="WrapWithOverflow" VerticalAlignment="Center" Foreground="{Binding ForegroundBrush}"/>
+                        <TextBlock FontWeight="SemiBold" FontSize="12" Text="{Binding ToolName}"  HorizontalAlignment="Center" TextWrapping="WrapWithOverflow" VerticalAlignment="Center" Foreground="{Binding ForegroundBrush}"/>
+                    </Grid>
+                </Grid>
+            </Border>
+        </DataTemplate>
+        <DataTemplate x:Key="ToolViewLarge">
+            <Border Width="300" Height="200" CornerRadius="5" BorderBrush="{x:Null}"  RenderTransformOrigin="0.5,0.5" BorderThickness="2" Background="{Binding BackgroundBrush}" MouseEnter="Border_MouseEnter" MouseLeave="Border_MouseLeave" MouseLeftButtonDown="Border_MouseLeftButtonDown">
+                <Border.Effect>
+                    <DropShadowEffect ShadowDepth="0" BlurRadius="13" Opacity="0.95"/>
+                </Border.Effect>
+                <Border.RenderTransform>
+                    <ScaleTransform ScaleX="1" ScaleY="1"/>
+                </Border.RenderTransform>
+                <Grid Margin="3">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="90"/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <Image Grid.Row="0" Width="70" Height="70" Source="{Binding ToolIcon}"/>
+                    <Grid Grid.Row="1">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="2*"/>
+                            <RowDefinition Height="2*"/>
+                            <RowDefinition Height="2*"/>
+                        </Grid.RowDefinitions>
+                        <TextBlock FontWeight="SemiBold" FontSize="14" Text="{Binding ToolName}" TextWrapping="WrapWithOverflow" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="{Binding ForegroundBrush}"/>
+                        <TextBlock FontSize="11" Grid.Row="1" TextWrapping="WrapWithOverflow" Text="{Binding ToolDesc}" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="{Binding ForegroundBrush}"/>
+                        <TextBlock FontSize="11" Grid.Row="2" Text="{Binding ToolAuthor}" VerticalAlignment="Center"  HorizontalAlignment="Center" Foreground="{Binding ForegroundBrush}"/>
                     </Grid>
                 </Grid>
             </Border>
         </DataTemplate>
         <DataTemplate x:Key="ToolViewTile">
-            <Border Width="300" Height="80" CornerRadius="5" BorderBrush="{x:Null}" BorderThickness="2" Background="{Binding BackgroundBrush}" MouseEnter="Border_MouseEnter" MouseLeave="Border_MouseLeave" MouseLeftButtonDown="Border_MouseLeftButtonDown">
+            <Border Width="300" Height="80" CornerRadius="5" BorderBrush="{x:Null}" RenderTransformOrigin="0.5,0.5" BorderThickness="2" Background="{Binding BackgroundBrush}" MouseEnter="Border_MouseEnter" MouseLeave="Border_MouseLeave" MouseLeftButtonDown="Border_MouseLeftButtonDown">
                 <Border.Effect>
                     <DropShadowEffect ShadowDepth="0" BlurRadius="13" Opacity="0.95"/>
                 </Border.Effect>
+                <Border.RenderTransform>
+                    <ScaleTransform ScaleX="1" ScaleY="1"/>
+                </Border.RenderTransform>
                 <Grid Margin="3">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="80"/>
@@ -50,6 +107,36 @@
                 </Grid>
             </Border>
         </DataTemplate>
+        <Style x:Key="TinyStyle" TargetType="ListViewItem">
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Margin" Value="0"/>
+            <Setter Property="Padding" Value="0"/>
+            <Setter Property="Background" Value="White"/>
+            <Setter Property="Width" Value="60"/>
+            <Setter Property="Height" Value="60"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type ListBoxItem}">
+                        <Border Background="#3F3F46"
+            BorderBrush="{TemplateBinding BorderBrush}"
+            BorderThickness="{TemplateBinding BorderThickness}">
+                            <ContentPresenter />
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="{x:Null}"/>
+                            </Trigger>
+                            <Trigger Property="IsSelected" Value="true">
+                                <Setter Property="Background" Value="{x:Null}"/>
+                            </Trigger>
+                            <Trigger Property="IsSelected" Value="false">
+                                <Setter Property="Background" Value="#333333"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
         <Style x:Key="TileStyle" TargetType="ListViewItem">
             <Setter Property="BorderThickness" Value="0"/>
             <Setter Property="Margin" Value="0"/>
@@ -85,8 +172,38 @@
             <Setter Property="Margin" Value="0"/>
             <Setter Property="Padding" Value="0"/>
             <Setter Property="Background" Value="White"/>
-            <Setter Property="Width" Value="140"/>
-            <Setter Property="Height" Value="160"/>
+            <Setter Property="Width" Value="120"/>
+            <Setter Property="Height" Value="140"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type ListBoxItem}">
+                        <Border Background="#3F3F46"
+            BorderBrush="{TemplateBinding BorderBrush}"
+            BorderThickness="{TemplateBinding BorderThickness}">
+                            <ContentPresenter />
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="{x:Null}"/>
+                            </Trigger>
+                            <Trigger Property="IsSelected" Value="true">
+                                <Setter Property="Background" Value="{x:Null}"/>
+                            </Trigger>
+                            <Trigger Property="IsSelected" Value="false">
+                                <Setter Property="Background" Value="#333333"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style x:Key="LargeStyle" TargetType="ListViewItem">
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Margin" Value="0"/>
+            <Setter Property="Padding" Value="0"/>
+            <Setter Property="Background" Value="White"/>
+            <Setter Property="Width" Value="320"/>
+            <Setter Property="Height" Value="220"/>
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="{x:Type ListBoxItem}">
@@ -112,11 +229,13 @@
         </Style>
     </Window.Resources>
 
-    <ListView x:Name="ToolsList" BorderThickness="0" Grid.Row="1" ItemsSource="{Binding tools}" ItemTemplate="{StaticResource ResourceKey=ToolViewTile}" Background="Transparent" Margin="0" Padding="0" ScrollViewer.HorizontalScrollBarVisibility="Disabled" ScrollViewer.VerticalScrollBarVisibility="Hidden" ItemContainerStyle="{StaticResource TileStyle}">
-        <ListView.ItemsPanel>
-            <ItemsPanelTemplate>
-                <WrapPanel  ></WrapPanel>
-            </ItemsPanelTemplate>
-        </ListView.ItemsPanel>
-    </ListView>
+    <Grid>
+        <ListView x:Name="ToolsList" BorderThickness="0" Grid.Row="1" ItemsSource="{Binding tools}" ItemTemplate="{StaticResource ResourceKey=ToolViewTile}" Background="Transparent" Margin="0" Padding="0" ScrollViewer.HorizontalScrollBarVisibility="Disabled" ScrollViewer.VerticalScrollBarVisibility="Hidden" ItemContainerStyle="{StaticResource TileStyle}">
+            <ListView.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <WrapPanel  ></WrapPanel>
+                </ItemsPanelTemplate>
+            </ListView.ItemsPanel>
+        </ListView>
+    </Grid>
 </Window>
