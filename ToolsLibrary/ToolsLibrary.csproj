@@ -76,6 +76,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <Compile Include="TimeLines\ViewModel_TimeLines.cs" />
     <Compile Include="TimeLines\Window_TimeLines.xaml.cs">
       <DependentUpon>Window_TimeLines.xaml</DependentUpon>
     </Compile>
@@ -134,9 +135,13 @@
     <Content Include="NetEaseCloudMusicConverter\extern\ncmtrans.exe">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Resource Include="Resources\timeline.png" />
     <Resource Include="Resources\PersonalVCard.png" />
     <Resource Include="Resources\LocalPortsReviewer.png" />
     <Resource Include="Resources\drawing-board.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="TimeLines\LifeLine\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

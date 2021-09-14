@@ -5,8 +5,17 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:DevelopmentTools.Tools.TimeLines"
         mc:Ignorable="d"
-        Title="Window_TimeLines" Height="450" Width="800">
+        Title="Window_TimeLines" Height="450" Width="800" Loaded="Window_Loaded">
     <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition Height="40"/>
+        </Grid.RowDefinitions>
         
+        <Canvas/>
+        <Slider x:Name="sdScale" Orientation="Vertical" HorizontalAlignment="Right" Height="150" Minimum="1" Maximum="30">
+            
+        </Slider>
+        <Canvas x:Name="TimeBar" Grid.Row="1" Background="#3F51B5"/>
     </Grid>
 </Window>
