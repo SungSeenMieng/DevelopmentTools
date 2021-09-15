@@ -54,7 +54,7 @@
             </Border>
         </DataTemplate>
         <DataTemplate x:Key="ToolViewLarge">
-            <Border Width="300" Height="200" CornerRadius="5" BorderBrush="{x:Null}"  RenderTransformOrigin="0.5,0.5" BorderThickness="2" Background="{Binding BackgroundBrush}" MouseEnter="Border_MouseEnter" MouseLeave="Border_MouseLeave" MouseLeftButtonDown="Border_MouseLeftButtonDown">
+            <Border Width="290" Height="200" CornerRadius="5" BorderBrush="{x:Null}"  RenderTransformOrigin="0.5,0.5" BorderThickness="2" Background="{Binding BackgroundBrush}" MouseEnter="Border_MouseEnter" MouseLeave="Border_MouseLeave" MouseLeftButtonDown="Border_MouseLeftButtonDown">
                 <Border.Effect>
                     <DropShadowEffect ShadowDepth="0" BlurRadius="13" Opacity="0.95"/>
                 </Border.Effect>
@@ -202,7 +202,7 @@
             <Setter Property="Margin" Value="0"/>
             <Setter Property="Padding" Value="0"/>
             <Setter Property="Background" Value="White"/>
-            <Setter Property="Width" Value="320"/>
+            <Setter Property="Width" Value="310"/>
             <Setter Property="Height" Value="220"/>
             <Setter Property="Template">
                 <Setter.Value>
@@ -230,7 +230,7 @@
     </Window.Resources>
 
     <Grid>
-        <ListView x:Name="ToolsList" BorderThickness="0" Grid.Row="1" ItemsSource="{Binding tools}" ItemTemplate="{StaticResource ResourceKey=ToolViewTile}" Background="Transparent" Margin="0" Padding="0" ScrollViewer.HorizontalScrollBarVisibility="Disabled" ScrollViewer.VerticalScrollBarVisibility="Hidden" ItemContainerStyle="{StaticResource TileStyle}">
+        <ListView x:Name="ToolsList" BorderThickness="0" Grid.Row="1" ItemTemplate="{DynamicResource ResourceKey=ToolViewTile}" ItemsSource="{Binding tools}" Background="Transparent" Margin="0" Padding="0" ScrollViewer.HorizontalScrollBarVisibility="Disabled" ScrollViewer.VerticalScrollBarVisibility="Hidden" ItemContainerStyle="{StaticResource TileStyle}">
             <ListView.ItemsPanel>
                 <ItemsPanelTemplate>
                     <WrapPanel  ></WrapPanel>

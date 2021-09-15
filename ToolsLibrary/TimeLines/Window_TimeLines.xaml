@@ -4,18 +4,32 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:DevelopmentTools.Tools.TimeLines"
+        xmlns:timebars="clr-namespace:LifeLines.TimeBars"
         mc:Ignorable="d"
-        Title="Window_TimeLines" Height="450" Width="800" Loaded="Window_Loaded">
+        Title="Window_TimeLines" Height="450" Width="800" Loaded="Window_Loaded" MouseWheel="Window_MouseWheel">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition/>
+            <RowDefinition Height="35"/>
             <RowDefinition Height="40"/>
         </Grid.RowDefinitions>
         
         <Canvas/>
-        <Slider x:Name="sdScale" Orientation="Vertical" HorizontalAlignment="Right" Height="150" Minimum="1" Maximum="30">
-            
-        </Slider>
-        <Canvas x:Name="TimeBar" Grid.Row="1" Background="#3F51B5"/>
+
+        <Grid Width="30" Height="70" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="10,10">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="30"/>
+                <RowDefinition/>
+                <RowDefinition Height="30"/>
+            </Grid.RowDefinitions>
+            <Border Width="30" Height="30" Background="#99FFFFFF"  CornerRadius="9" Cursor="Hand" Uid="zoomin" MouseLeftButtonDown="Border_MouseLeftButtonDown">
+                <Image Width="24" Height="24" Source="/ToolsLibrary;component/Resources/timeline_zoomin.png"/>
+            </Border>
+            <Border Grid.Row="2" Width="30" Height="30" Background="#99FFFFFF"  CornerRadius="9" Cursor="Hand" Uid="zoomout" MouseLeftButtonDown="Border_MouseLeftButtonDown">
+                <Image Width="24" Height="24" Source="/ToolsLibrary;component/Resources/timeline_zoomout.png"/>
+            </Border>
+        </Grid>
+        <Canvas x:Name="InfoBar" Grid.Row="1"/>
+        <Canvas x:Name="TimeBar" Grid.Row="2" Background="#0747A6" SizeChanged="Canvas_SizeChanged" ClipToBounds="True"/>
     </Grid>
 </Window>

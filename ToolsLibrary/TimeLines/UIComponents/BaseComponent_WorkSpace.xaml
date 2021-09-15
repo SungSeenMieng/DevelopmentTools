@@ -1,0 +1,17 @@
+﻿<UserControl x:Name="userControl" x:Class="LifeLines.UIComponents.BaseComponent_WorkSpace"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:LifeLines.UIComponents" xmlns:timeBars="clr-namespace:LifeLines.TimeBars" MinWidth="450" MinHeight="100" SizeChanged="WorkSpace_SizeChanged" Margin="0,0,0,0" MouseWheel="userControl_MouseWheel">
+
+    <Grid Background="#A5DEF1" ClipToBounds="True">
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition Height="35"/>
+            <RowDefinition Height="35"/>
+        </Grid.RowDefinitions>
+        <timeBars:TimeBar_Hours x:Name="HourBar" Grid.Row="2"/>
+        <Line X1="{Binding CurrentLineX,ElementName=userControl}" X2="{Binding CurrentLineX, ElementName=userControl}" Y1="0" x:Name="CurrentLine" Stroke="#FF7852" StrokeThickness="2"/>
+    </Grid>
+</UserControl>

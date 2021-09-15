@@ -1,0 +1,20 @@
+﻿<UserControl x:Class="LifeLines.UIComponents.UIComponent_Task"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:LifeLines.UIComponents"
+             >
+    <Grid Width="100">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="3"/>
+            <ColumnDefinition/>
+            <ColumnDefinition Width="3"/>
+        </Grid.ColumnDefinitions>
+    <Rectangle Grid.ColumnSpan="3"  Height="20" Fill="Purple">
+        
+    </Rectangle>
+        <Rectangle Grid.Column="0" Fill="Black" Opacity="0.3"/>
+        <Rectangle Grid.Column="2" Fill="Black" Opacity="0.3"/>
+    </Grid>
+</UserControl>

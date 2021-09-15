@@ -1,0 +1,11 @@
+﻿<UserControl x:Name="userControl" x:Class="LifeLines.UIComponents.UIComponent_ImageButton"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+                  xmlns:local="clr-namespace:LifeLines.UIComponents"
+             mc:Ignorable="d">
+    <Border x:Name="border" Width="{Binding ButtonWidth,ElementName=userControl,Mode=OneWay}" Height="{Binding ButtonHeight,ElementName=userControl,Mode=OneWay}" MouseEnter="Border_MouseEnter" MouseLeave="Border_MouseLeave" PreviewMouseLeftButtonDown="Border_PreviewMouseLeftButtonDown" PreviewMouseLeftButtonUp="Border_PreviewMouseLeftButtonUp" Background="{Binding CurrentBackground,ElementName=userControl,Mode=OneWay}" CornerRadius="{Binding CornerRadius,ElementName=userControl,Mode=OneWay}" BorderBrush="{Binding BorderBrush,ElementName=userControl,Mode=OneWay}" BorderThickness="{Binding BorderThickness,ElementName=userControl,Mode=OneWay}" >
+        <Image Source="{Binding Source, ElementName=userControl}" Width="{Binding ImageWidth,ElementName=userControl,Mode=OneWay}" Height="{Binding ImageHeight,ElementName=userControl,Mode=OneWay}" RenderOptions.BitmapScalingMode="HighQuality"/>
+    </Border>
+</UserControl>

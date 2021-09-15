@@ -76,6 +76,39 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <Compile Include="TimeLines\BaseModel\StaticConfig.cs" />
+    <Compile Include="TimeLines\BaseModel\StaticData.cs" />
+    <Compile Include="TimeLines\BaseRoutine\StaticFunction.cs" />
+    <Compile Include="TimeLines\TimeBars\TimeBar_Hours.xaml.cs">
+      <DependentUpon>TimeBar_Hours.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TimeLines\UIComponents\BaseComponent_WorkSpace.xaml.cs">
+      <DependentUpon>BaseComponent_WorkSpace.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TimeLines\UIComponents\Label_Current.xaml.cs">
+      <DependentUpon>Label_Current.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TimeLines\UIComponents\UIComponent_DayTag.xaml.cs">
+      <DependentUpon>UIComponent_DayTag.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TimeLines\UIComponents\UIComponent_HourTag.xaml.cs">
+      <DependentUpon>UIComponent_HourTag.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TimeLines\UIComponents\UIComponent_ImageButton.xaml.cs">
+      <DependentUpon>UIComponent_ImageButton.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TimeLines\UIComponents\UIComponent_SecondTag.xaml.cs">
+      <DependentUpon>UIComponent_SecondTag.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TimeLines\UIComponents\UIComponent_Task.xaml.cs">
+      <DependentUpon>UIComponent_Task.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TimeLines\UIComponents\UIComponent_TextButton.xaml.cs">
+      <DependentUpon>UIComponent_TextButton.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TimeLines\UIComponents\UIComponent_TimeLine.xaml.cs">
+      <DependentUpon>UIComponent_TimeLine.xaml</DependentUpon>
+    </Compile>
     <Compile Include="TimeLines\ViewModel_TimeLines.cs" />
     <Compile Include="TimeLines\Window_TimeLines.xaml.cs">
       <DependentUpon>Window_TimeLines.xaml</DependentUpon>
@@ -101,6 +134,46 @@
     <Page Include="PersonalVCard\Window_PersonalVCard.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="TimeLines\TimeBars\TimeBar_Hours.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="TimeLines\UIComponents\BaseComponent_WorkSpace.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="TimeLines\UIComponents\Label_Current.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="TimeLines\UIComponents\UIComponent_DayTag.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="TimeLines\UIComponents\UIComponent_HourTag.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="TimeLines\UIComponents\UIComponent_ImageButton.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="TimeLines\UIComponents\UIComponent_SecondTag.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="TimeLines\UIComponents\UIComponent_Task.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="TimeLines\UIComponents\UIComponent_TextButton.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="TimeLines\UIComponents\UIComponent_TimeLine.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="TimeLines\Window_TimeLines.xaml">
       <SubType>Designer</SubType>
@@ -135,13 +208,13 @@
     <Content Include="NetEaseCloudMusicConverter\extern\ncmtrans.exe">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Resource Include="Resources\timeline_zoomout.png" />
+    <Resource Include="Resources\timeline_zoomin.png" />
     <Resource Include="Resources\timeline.png" />
     <Resource Include="Resources\PersonalVCard.png" />
     <Resource Include="Resources\LocalPortsReviewer.png" />
     <Resource Include="Resources\drawing-board.png" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="TimeLines\LifeLine\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
