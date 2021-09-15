@@ -277,7 +277,7 @@ namespace DevelopmentTools.Tools.TimeLines
                 TimeBar.Children.Add(_textBlock);
             }
            
-            Label_Current current = new Label_Current(StaticData.DatetimeNow);
+            Label_Current current = new Label_Current();
             current.Uid = StaticData.Now.ToString(str);
             InfoBar.Children.Add(current);
            
@@ -326,6 +326,7 @@ namespace DevelopmentTools.Tools.TimeLines
                     break;
                 case "zoomout":
                     val = StaticData.TimeScalePerPixie * 1.2;
+                    if (val > 300000) return;
                     StaticData.TimeScalePerPixie = val;
                     break;
                 case "today":

@@ -21,10 +21,12 @@ namespace LifeLines.UIComponents
     /// </summary>
     public partial class Label_Current : UserControl
     {
-        public Label_Current(double dateTime)
+        public Label_Current()
         {
             InitializeComponent();
-            double left = ((dateTime - StaticData.FocusDatetime) / StaticData.TimeScalePerPixie) + StaticData.DisplayPixies/2-40;
+            double left = ((StaticData.DatetimeNow - StaticData.FocusDatetime) / StaticData.TimeScalePerPixie) + StaticData.DisplayPixies/2-40;
+            left = left < 0 ? 0 : left;
+            left = left > StaticData.DisplayPixies - 80 ? StaticData.DisplayPixies - 80 : left;
             Canvas.SetLeft(this,left);
         }
     }

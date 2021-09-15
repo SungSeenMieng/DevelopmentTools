@@ -274,7 +274,7 @@ namespace LifeLines.TimeBars
             }
             Application.Current.Dispatcher.BeginInvoke(new Action(() =>
             {
-                Label_Current current = new Label_Current(StaticData.DatetimeNow);
+                Label_Current current = new Label_Current();
                 current.Uid = StaticData.Now.ToString("HH:mm");
                 MainContent.Children.Add(current);
             }));
