@@ -133,6 +133,16 @@ namespace DevelopmentTools.Tools.Properties {
         /// <summary>
         ///   查找 System.Drawing.Bitmap 类型的本地化资源。
         /// </summary>
+        internal static System.Drawing.Bitmap timeline_today {
+            get {
+                object obj = ResourceManager.GetObject("timeline_today", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
         internal static System.Drawing.Bitmap timeline_zoomin {
             get {
                 object obj = ResourceManager.GetObject("timeline_zoomin", resourceCulture);

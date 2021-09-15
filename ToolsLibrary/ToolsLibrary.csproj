@@ -208,6 +208,7 @@
     <Content Include="NetEaseCloudMusicConverter\extern\ncmtrans.exe">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Resource Include="Resources\timeline_today.png" />
     <Resource Include="Resources\timeline_zoomout.png" />
     <Resource Include="Resources\timeline_zoomin.png" />
     <Resource Include="Resources\timeline.png" />

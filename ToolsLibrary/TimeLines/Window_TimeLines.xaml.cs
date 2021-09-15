@@ -25,6 +25,7 @@ namespace DevelopmentTools.Tools.TimeLines
     /// </summary>
     public partial class Window_TimeLines : Window
     {
+        bool isFocusToday = true;
         DispatcherTimer timer = new DispatcherTimer() { Interval = TimeSpan.FromSeconds(1) };
         ViewModel_TimeLines data
         {
@@ -36,12 +37,17 @@ namespace DevelopmentTools.Tools.TimeLines
         public Window_TimeLines()
         {
             InitializeComponent();
-         
+            StaticData.Now = DateTime.Now;
+            StaticData.FocusDatetime = StaticData.DatetimeNow;
         }
 
         private void Timer_Tick(object sender, EventArgs e)
         {
             StaticData.Now = DateTime.Now;
+            if (isFocusToday)
+            {
+                StaticData.FocusDatetime = StaticData.DatetimeNow;
+            }
             DrawRule();
         }
         SolidColorBrush pen = new SolidColorBrush(Color.FromRgb(255,255,255));
@@ -322,6 +328,10 @@ namespace DevelopmentTools.Tools.TimeLines
                     val = StaticData.TimeScalePerPixie * 1.2;
                     StaticData.TimeScalePerPixie = val;
                     break;
+                case "today":
+                    isFocusToday = true;
+                    StaticData.FocusDatetime = StaticData.DatetimeNow;
+                    break;
             }
             DrawRule();
         }
@@ -330,12 +340,13 @@ namespace DevelopmentTools.Tools.TimeLines
         {
             if (e.Delta > 0)
             {
-                StaticData.FocusDatetime -= StaticData.TimeScalePerPixie * 50;
+                StaticData.FocusDatetime -= (StaticData.TimeScalePerPixie * 50);
             }
             else
             {
-                StaticData.FocusDatetime += StaticData.TimeScalePerPixie * 50;
+                StaticData.FocusDatetime += (StaticData.TimeScalePerPixie * 50);
             }
+            isFocusToday = false;
             DrawRule();
         }
     }

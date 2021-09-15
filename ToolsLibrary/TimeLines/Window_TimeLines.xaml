@@ -16,8 +16,10 @@
         
         <Canvas/>
 
-        <Grid Width="30" Height="70" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="10,10">
+        <Grid Width="30" Height="110" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="10,10">
             <Grid.RowDefinitions>
+                <RowDefinition Height="30"/>
+                <RowDefinition/>
                 <RowDefinition Height="30"/>
                 <RowDefinition/>
                 <RowDefinition Height="30"/>
@@ -28,8 +30,11 @@
             <Border Grid.Row="2" Width="30" Height="30" Background="#99FFFFFF"  CornerRadius="9" Cursor="Hand" Uid="zoomout" MouseLeftButtonDown="Border_MouseLeftButtonDown">
                 <Image Width="24" Height="24" Source="/ToolsLibrary;component/Resources/timeline_zoomout.png"/>
             </Border>
+            <Border Grid.Row="4" Width="30" Height="30" Background="#99FFFFFF"  CornerRadius="9" Cursor="Hand" Uid="today" MouseLeftButtonDown="Border_MouseLeftButtonDown">
+                <Image Width="24" Height="24" Source="/ToolsLibrary;component/Resources/timeline_today.png"/>
+            </Border>
         </Grid>
-        <Canvas x:Name="InfoBar" Grid.Row="1"/>
+        <Canvas x:Name="InfoBar" Grid.Row="1" ClipToBounds="True"/>
         <Canvas x:Name="TimeBar" Grid.Row="2" Background="#0747A6" SizeChanged="Canvas_SizeChanged" ClipToBounds="True"/>
     </Grid>
 </Window>

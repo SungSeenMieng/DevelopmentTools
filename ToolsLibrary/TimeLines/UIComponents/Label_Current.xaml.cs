@@ -24,7 +24,7 @@ namespace LifeLines.UIComponents
         public Label_Current(double dateTime)
         {
             InitializeComponent();
-            double left = ((dateTime - StaticData.FocusDatetime) * StaticData.TimeScalePerPixie) + StaticData.DisplayPixies/2-40;
+            double left = ((dateTime - StaticData.FocusDatetime) / StaticData.TimeScalePerPixie) + StaticData.DisplayPixies/2-40;
             Canvas.SetLeft(this,left);
         }
     }
