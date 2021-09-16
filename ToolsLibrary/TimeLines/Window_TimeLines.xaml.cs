@@ -54,6 +54,7 @@ namespace DevelopmentTools.Tools.TimeLines
         SolidColorBrush pen = new SolidColorBrush(Color.FromRgb(255,255,255));
         private void DrawRule()
         {
+          
             if (TimeBar.Children != null)
             {
                 TimeBar.Children.Clear();
@@ -229,7 +230,13 @@ namespace DevelopmentTools.Tools.TimeLines
                     break;
                 case TimeBarDisplayMode.Month:
                 case TimeBarDisplayMode.Season:
+                    showDay = false;
+                    showMonth = false;
+                    showWeek = false;
+                    showYear = false;
+                    break;
                 case TimeBarDisplayMode.TwoSeasons:
+                    showSeason = false;
                     showDay = false;
                     showMonth = false;
                     showWeek = false;
@@ -456,10 +463,20 @@ namespace DevelopmentTools.Tools.TimeLines
                 double left = ((StaticData.DatetimeNow - StaticData.FocusDatetime) / StaticData.TimeScalePerPixie) + StaticData.DisplayPixies / 2;
             BackRect.Width = left > StaticData.DisplayPixies ? StaticData.DisplayPixies : left < 0 ? 0 : left;
 
-            left = left < 75 ? 75 : left > StaticData.DisplayPixies - 70 ? StaticData.DisplayPixies - 70 : left;
+            left = left < 75 ? 75 : left > StaticData.DisplayPixies - 75 ? StaticData.DisplayPixies - 75 : left;
             CurrentLine.X1 = CurrentLine.X2 = BackRect.Width;
             CurrentLine.Y2 = MainContent.ActualHeight;
             Canvas.SetLeft(current, left - 75);
+            LeftArrow.Visibility = Visibility.Collapsed;
+            RightArrow.Visibility = Visibility.Collapsed;
+            if (BackRect.Width==0)
+            {
+                LeftArrow.Visibility = Visibility.Visible;
+            }
+            if (BackRect.Width==StaticData.DisplayPixies)
+            {
+                RightArrow.Visibility = Visibility.Visible;
+            }
             data.OnPropertyChanged("Now");
         }
         public static int WeekOfYear(DateTime dt, CultureInfo ci)
