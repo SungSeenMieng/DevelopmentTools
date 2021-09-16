@@ -464,10 +464,8 @@ namespace DevelopmentTools.Tools.TimeLines
                 double left = ((StaticData.DatetimeNow - StaticData.FocusDatetime) / StaticData.TimeScalePerPixie) + StaticData.DisplayPixies / 2;
             BackRect.Width = left > StaticData.DisplayPixies ? StaticData.DisplayPixies : left < 0 ? 0 : left;
 
-            left = left < 75 ? 75 : left > StaticData.DisplayPixies - 75 ? StaticData.DisplayPixies - 75 : left;
-            CurrentLine.X1 = CurrentLine.X2 = BackRect.Width;
-            CurrentLine.Y2 = MainContent.ActualHeight;
-            Canvas.SetLeft(current, left - 75);
+            left = left < 50 ? 50 : left > StaticData.DisplayPixies - 50 ? StaticData.DisplayPixies - 50 : left;
+            Canvas.SetLeft(current, left - 50);
             LeftArrow.Visibility = Visibility.Collapsed;
             RightArrow.Visibility = Visibility.Collapsed;
             if (BackRect.Width==0)
@@ -479,6 +477,7 @@ namespace DevelopmentTools.Tools.TimeLines
                 RightArrow.Visibility = Visibility.Visible;
             }
             data.OnPropertyChanged("Now");
+            
         }
         public static int WeekOfYear(DateTime dt, CultureInfo ci)
         {
@@ -550,6 +549,11 @@ namespace DevelopmentTools.Tools.TimeLines
                 StaticData.TimeScalePerPixie = val < 0.01 ? 0.01 : val > 500000 ? 500000 : val;
                 DrawRule();
             }
+        }
+
+        private void Grid_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            e.Handled = true;
         }
     }
     public enum TimeBarDisplayMode

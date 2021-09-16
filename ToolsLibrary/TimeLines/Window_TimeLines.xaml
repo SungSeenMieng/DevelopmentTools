@@ -101,7 +101,7 @@
                     <TickBar x:Name="BottomTick" Fill="{TemplateBinding Foreground}" Height="4" Margin="0,2,0,0" Placement="Bottom" Grid.Row="2" Visibility="Collapsed"/>
                     <Border x:Name="TrackBackground" BorderBrush="{StaticResource SliderThumb.Track.Border}" BorderThickness="1" Background="{StaticResource SliderThumb.Track.Background}" Height="4.0" Margin="5,0" Grid.Row="1" VerticalAlignment="center">
                         <Canvas Margin="-6,-1">
-                           
+
                             <Rectangle x:Name="PART_SelectionRange" Fill="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}" Height="4.0" Visibility="Hidden"/>
                         </Canvas>
                     </Border>
@@ -275,10 +275,27 @@
             <RowDefinition Height="35"/>
             <RowDefinition Height="30"/>
         </Grid.RowDefinitions>
-        <Rectangle x:Name="BackRect" Grid.RowSpan="3" Fill="#88000000" Width="100" HorizontalAlignment="Left"/>
-        <Canvas x:Name="MainContent">
-            <Line x:Name="CurrentLine" Visibility="Collapsed" Stroke="White" StrokeThickness="1" Y1="0"/>
-        </Canvas>
+        <Rectangle x:Name="BackRect" Grid.RowSpan="3" Fill="#88000000" Width="0" HorizontalAlignment="Left"/>
+
+        <Grid ShowGridLines="True" Background="Transparent" MouseLeftButtonDown="Grid_MouseLeftButtonDown">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" MinHeight="20"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*" MinHeight="20"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*" MinHeight="20"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*" MinHeight="20"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*" MinHeight="20"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*" MinHeight="20"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*" MinHeight="20"/>
+            </Grid.RowDefinitions>
+            <GridSplitter Background="Green" Height="2" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Stretch"/>
+        </Grid>
+
         <Slider HorizontalAlignment="Right" VerticalAlignment="Bottom" Minimum="0" Maximum="35" Value="18" Margin="0,0,5,25" Orientation="Vertical" Style="{DynamicResource ZoomSliderStyle}" Height="150" ValueChanged="Slider_ValueChanged">
 
         </Slider>
@@ -304,7 +321,7 @@
 
         </Canvas>
         <Canvas Grid.Row="1" ClipToBounds="True" Background="Transparent">
-            <Border Width="150" Height="35" BorderBrush="White" BorderThickness="2" CornerRadius="5" x:Name="current" Cursor="Hand" Uid="today" MouseLeftButtonDown="Border_MouseLeftButtonDown" ToolTip="返回现在">
+            <Border Width="100" Height="35" BorderBrush="White" BorderThickness="2" CornerRadius="5" x:Name="current" Cursor="Hand" Uid="today" MouseLeftButtonDown="Border_MouseLeftButtonDown" ToolTip="返回现在">
                 <Border.Style>
                     <Style TargetType="Border">
                         <Style.Triggers>
@@ -325,8 +342,8 @@
 
                     <TextBlock Text="{Binding Now,StringFormat=yyyy-MM-dd}" FontSize="11" Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White"/>
                     <TextBlock Text="{Binding Now,StringFormat=HH:mm:ss}" FontSize="11" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White"/>
-                    <Path Grid.RowSpan="2" x:Name="LeftArrow" Visibility="Collapsed" Data="M 3,16 L 15,23 L 15,9 Z" Fill="White"/>
-                    <Path Grid.RowSpan="2" x:Name="RightArrow" Visibility="Collapsed" Data="M 143,16 L 131,23 L 131,9 Z" Fill="White"/>
+                    <Path Grid.RowSpan="2" x:Name="LeftArrow" Visibility="Collapsed"  Data="M 3,16 L 10,23 L 10,9 Z" Fill="White"/>
+                    <Path Grid.RowSpan="2" x:Name="RightArrow" Visibility="Collapsed"  Data="M 93,16 L 86,23 L 86,9 Z" Fill="White"/>
                 </Grid>
             </Border>
         </Canvas>
