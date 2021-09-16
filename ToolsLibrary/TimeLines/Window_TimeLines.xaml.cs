@@ -76,19 +76,20 @@ namespace DevelopmentTools.Tools.TimeLines
                 case TimeBarDisplayMode.TenSeconds:
                 case TimeBarDisplayMode.ThirtySeconds:
                     scale = 80;
+                    str = "HH:mm:ss";
                     break;
                 case TimeBarDisplayMode.Minute:
                 case TimeBarDisplayMode.FiveMinutes:
                 case TimeBarDisplayMode.TenMinutes:
                 case TimeBarDisplayMode.ThirtyMinutes:
                     scale = 100;
-                    str = "HH:mm:ss";
+                    str = "HH:mm";
                     break;
                 case TimeBarDisplayMode.Hour:
                 case TimeBarDisplayMode.SixHours:
                 case TimeBarDisplayMode.TwelveHours:
                     scale = 120;
-                    str = "HH:mm:ss";
+                    str = "HH:mm";
                     break;
                 case TimeBarDisplayMode.Day:
                     scale = 140;
@@ -311,7 +312,7 @@ namespace DevelopmentTools.Tools.TimeLines
                 {
                     Text = LineDatetime.ToString(str),
                     Foreground = pen,
-                    FontSize = 11,
+                    FontSize = 13,
                    Width = 100,
                    Height=30,
                    TextAlignment = TextAlignment.Center,
@@ -320,7 +321,7 @@ namespace DevelopmentTools.Tools.TimeLines
                 _textBlock.Width = 100;
                 _textBlock.Height = 30;
                 Canvas.SetLeft(_textBlock, x-50);
-                Canvas.SetTop(_textBlock, 25);
+                Canvas.SetTop(_textBlock, 10);
                 TimeBar.Children.Add(_line);
                 TimeBar.Children.Add(_textBlock);
 

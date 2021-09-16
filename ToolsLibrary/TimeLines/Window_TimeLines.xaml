@@ -273,11 +273,11 @@
         <Grid.RowDefinitions>
             <RowDefinition/>
             <RowDefinition Height="35"/>
-            <RowDefinition Height="40"/>
+            <RowDefinition Height="30"/>
         </Grid.RowDefinitions>
         <Rectangle x:Name="BackRect" Grid.RowSpan="3" Fill="#88000000" Width="100" HorizontalAlignment="Left"/>
         <Canvas x:Name="MainContent">
-            <Line x:Name="CurrentLine" Stroke="White" StrokeThickness="1" Y1="0"/>
+            <Line x:Name="CurrentLine" Visibility="Collapsed" Stroke="White" StrokeThickness="1" Y1="0"/>
         </Canvas>
         <Slider HorizontalAlignment="Right" VerticalAlignment="Bottom" Minimum="0" Maximum="35" Value="18" Margin="0,0,5,25" Orientation="Vertical" Style="{DynamicResource ZoomSliderStyle}" Height="150" ValueChanged="Slider_ValueChanged">
 
