@@ -4,6 +4,7 @@ using LifeLines.UIComponents;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Globalization;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
@@ -201,6 +202,46 @@ namespace DevelopmentTools.Tools.TimeLines
                     startPos = StaticFunction.GetTimeStamp(date.AddDays(1 - date.DayOfYear));
                     break;
             }
+            bool showDay = true;
+            bool showWeek = true;
+            bool showMonth = true;
+            bool showSeason = true;
+            bool showYear = true;
+            switch (mode)
+            {
+                case TimeBarDisplayMode.Second:
+                case TimeBarDisplayMode.FiveSeconds:
+                case TimeBarDisplayMode.TenSeconds:
+                case TimeBarDisplayMode.ThirtySeconds:
+                case TimeBarDisplayMode.Minute:
+                case TimeBarDisplayMode.FiveMinutes:
+                case TimeBarDisplayMode.TenMinutes:
+                case TimeBarDisplayMode.ThirtyMinutes:
+                case TimeBarDisplayMode.Hour:
+                case TimeBarDisplayMode.SixHours:
+                case TimeBarDisplayMode.TwelveHours:
+                    break;
+                case TimeBarDisplayMode.Day:
+                    showDay = false;
+                    break;
+                case TimeBarDisplayMode.Week:
+                    showDay = false;
+                    break;
+                case TimeBarDisplayMode.Month:
+                case TimeBarDisplayMode.Season:
+                case TimeBarDisplayMode.TwoSeasons:
+                    showDay = false;
+                    showMonth = false;
+                    showWeek = false;
+                    break;
+                default:
+                    showSeason = false;
+                    showDay = false;
+                    showWeek = false;
+                    showMonth = false;
+                    showYear = false;
+                    break;
+            }
             for (double i = startPos; i < Math.Ceiling(StaticData.EndDatetime); i += step)
             {
                 double count = 1;
@@ -263,7 +304,7 @@ namespace DevelopmentTools.Tools.TimeLines
                 {
                     Text = LineDatetime.ToString(str),
                     Foreground = pen,
-                    FontSize = 8,
+                    FontSize = 11,
                    Width = 100,
                    Height=30,
                    TextAlignment = TextAlignment.Center,
@@ -275,14 +316,156 @@ namespace DevelopmentTools.Tools.TimeLines
                 Canvas.SetTop(_textBlock, 25);
                 TimeBar.Children.Add(_line);
                 TimeBar.Children.Add(_textBlock);
-            }
-           
-            Label_Current current = new Label_Current();
-            current.Uid = StaticData.Now.ToString(str);
-            InfoBar.Children.Add(current);
-           
-        }
 
+                if (showYear && LineDatetime.Day == 1 && LineDatetime.Month == 1 && LineDatetime.Hour == 0 && LineDatetime.Minute == 0 && LineDatetime.Second == 0)
+                {
+                    _line = new Line()
+                    {
+                        X1 = x,
+                        X2 = x,
+                        Y1 = 30,
+                        Y2 = 35,
+                        Stroke = pen,
+                        StrokeThickness = 1,
+                    };
+                    _textBlock = new TextBlock()
+                    {
+                        Text = LineDatetime.ToString("yyyy年"),
+                        Foreground = pen,
+                        FontSize = 11,
+                        Width = 100,
+                        Height = 30,
+                        TextAlignment = TextAlignment.Center,
+                    };
+                    _textBlock.Width = 100;
+                    _textBlock.Height = 30;
+                    Canvas.SetLeft(_textBlock, x - 50);
+                    Canvas.SetTop(_textBlock, 15);
+                    InfoBar.Children.Add(_line);
+                    InfoBar.Children.Add(_textBlock);
+                }
+                else if (showSeason &&(LineDatetime.Month==1||LineDatetime.Month==4|| LineDatetime.Month == 7|| LineDatetime.Month == 10) &&LineDatetime.Day == 1 && LineDatetime.Hour == 0 && LineDatetime.Minute == 0 && LineDatetime.Second == 0)
+                {
+                    _line = new Line()
+                    {
+                        X1 = x,
+                        X2 = x,
+                        Y1 = 30,
+                        Y2 = 35,
+                        Stroke = pen,
+                        StrokeThickness = 1,
+                    };
+                    _textBlock = new TextBlock()
+                    {
+                        Text =string.Format("{0}\r\n第{1}季度",LineDatetime.ToString("yyyy年MM月"),(LineDatetime.Month-1)/3+1),
+                        Foreground = pen,
+                        FontSize = 11,
+                        Width = 100,
+                        Height = 30,
+                        TextAlignment = TextAlignment.Center
+                    };
+                    _textBlock.Width = 100;
+                    _textBlock.Height = 30;
+                    Canvas.SetLeft(_textBlock, x - 50);
+                    Canvas.SetTop(_textBlock, 5);
+                    InfoBar.Children.Add(_line);
+                    InfoBar.Children.Add(_textBlock);
+                }
+                else if (showMonth && LineDatetime.Day == 1 && LineDatetime.Hour == 0 && LineDatetime.Minute == 0 && LineDatetime.Second == 0)
+                {
+                    _line = new Line()
+                    {
+                        X1 = x,
+                        X2 = x,
+                        Y1 = 30,
+                        Y2 = 35,
+                        Stroke = pen,
+                        StrokeThickness = 1,
+                    };
+                    _textBlock = new TextBlock()
+                    {
+                        Text = LineDatetime.ToString("yyyy年MM月"),
+                        Foreground = pen,
+                        FontSize = 11,
+                        Width = 100,
+                        Height = 30,
+                        TextAlignment = TextAlignment.Center
+                    };
+                    _textBlock.Width = 100;
+                    _textBlock.Height = 30;
+                    Canvas.SetLeft(_textBlock, x - 50);
+                    Canvas.SetTop(_textBlock, 15);
+                    InfoBar.Children.Add(_line);
+                    InfoBar.Children.Add(_textBlock);
+                }
+                else if (showWeek && LineDatetime.DayOfWeek == DayOfWeek.Monday&&LineDatetime.Hour==0&&LineDatetime.Minute==0&&LineDatetime.Second==0)
+                {
+                    _line = new Line()
+                    {
+                        X1 = x,
+                        X2 = x,
+                        Y1 = 30,
+                        Y2 = 35,
+                        Stroke = pen,
+                        StrokeThickness = 1,
+                    };
+                    _textBlock = new TextBlock()
+                    {
+                        Text = string.Format("{0}年{1}周\r\n{2}", LineDatetime.Year, WeekOfYear(LineDatetime, new CultureInfo("zh-CN")),LineDatetime.ToString("MM月dd日")),
+                        Foreground = pen,
+                        FontSize = 11,
+                        Width = 100,
+                        Height = 30,
+                        TextAlignment = TextAlignment.Center,
+                    };
+                    _textBlock.Width = 100;
+                    _textBlock.Height = 30;
+                    Canvas.SetLeft(_textBlock, x - 50);
+                    Canvas.SetTop(_textBlock, 5);
+                    InfoBar.Children.Add(_line);
+                    InfoBar.Children.Add(_textBlock);
+                }
+                else if (showDay && LineDatetime.Hour == 0&&LineDatetime.Minute==0&&LineDatetime.Second==0)
+                {
+                    _line = new Line()
+                    {
+                        X1 = x,
+                        X2 = x,
+                        Y1 = 30,
+                        Y2 = 35,
+                        Stroke = pen,
+                        StrokeThickness = 1,
+                    };
+                    _textBlock = new TextBlock()
+                    {
+                        Text = LineDatetime.ToString("yyyy年MM月dd日"),
+                        Foreground = pen,
+                        FontSize = 11,
+                        Width = 100,
+                        Height = 30,
+                        TextAlignment = TextAlignment.Center
+                    };
+                    _textBlock.Width = 100;
+                    _textBlock.Height = 30;
+                    Canvas.SetLeft(_textBlock, x - 50);
+                    Canvas.SetTop(_textBlock, 15);
+                    InfoBar.Children.Add(_line);
+                    InfoBar.Children.Add(_textBlock);
+                }
+            }
+                double left = ((StaticData.DatetimeNow - StaticData.FocusDatetime) / StaticData.TimeScalePerPixie) + StaticData.DisplayPixies / 2;
+            BackRect.Width = left > StaticData.DisplayPixies ? StaticData.DisplayPixies : left < 0 ? 0 : left;
+
+            left = left < 75 ? 75 : left > StaticData.DisplayPixies - 70 ? StaticData.DisplayPixies - 70 : left;
+            CurrentLine.X1 = CurrentLine.X2 = BackRect.Width;
+            CurrentLine.Y2 = MainContent.ActualHeight;
+            Canvas.SetLeft(current, left - 75);
+            data.OnPropertyChanged("Now");
+        }
+        public static int WeekOfYear(DateTime dt, CultureInfo ci)
+        {
+            return ci.Calendar.GetWeekOfYear(dt, ci.DateTimeFormat.CalendarWeekRule, ci.DateTimeFormat.FirstDayOfWeek);
+        }
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             timer.Tick += Timer_Tick;
@@ -319,16 +502,6 @@ namespace DevelopmentTools.Tools.TimeLines
         {
             switch ((sender as Border).Uid)
             {
-                case "zoomin":
-                    double val = StaticData.TimeScalePerPixie / 1.2;
-                    if (val < 0.000002) return;
-                    StaticData.TimeScalePerPixie = val;
-                    break;
-                case "zoomout":
-                    val = StaticData.TimeScalePerPixie * 1.2;
-                    if (val > 300000) return;
-                    StaticData.TimeScalePerPixie = val;
-                    break;
                 case "today":
                     isFocusToday = true;
                     StaticData.FocusDatetime = StaticData.DatetimeNow;
@@ -349,6 +522,16 @@ namespace DevelopmentTools.Tools.TimeLines
             }
             isFocusToday = false;
             DrawRule();
+        }
+
+        private void Slider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
+        {
+            if (this.IsLoaded)
+            {
+                double val  = Math.Pow(0.6,e.NewValue)*500000;
+                StaticData.TimeScalePerPixie = val < 0.01 ? 0.01 : val > 500000 ? 500000 : val;
+                DrawRule();
+            }
         }
     }
     public enum TimeBarDisplayMode

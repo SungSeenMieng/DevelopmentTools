@@ -1,4 +1,5 @@
 ﻿using DevelopmentTools.Base;
+using LifeLines.BaseModel;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -40,9 +41,6 @@ namespace DevelopmentTools.Tools.TimeLines
                 return window;
             }
         }
-
-
-
         public ImageSource ToolIcon => new BitmapImage(new Uri("/ToolsLibrary;component/Resources/timeline.png", UriKind.Relative));
 
         public string ToolAuthor => "ssm";
@@ -50,10 +48,11 @@ namespace DevelopmentTools.Tools.TimeLines
         public Color ToolThemeColor => Color.FromRgb(63, 81, 181);
 
         public event PropertyChangedEventHandler PropertyChanged;
-        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
+        public virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
             PropertyChangedEventHandler handler = PropertyChanged;
             if (handler != null) handler(this, new PropertyChangedEventArgs(propertyName));
         }
+        public BindingList<TimeLineTask> TimeLineTasks { get; set; } = new BindingList<TimeLineTask>();
     }
 }

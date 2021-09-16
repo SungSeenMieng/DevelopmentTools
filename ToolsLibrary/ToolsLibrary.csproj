@@ -31,6 +31,24 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x64\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
+    <OutputPath>bin\x64\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
@@ -78,6 +96,7 @@
     </Compile>
     <Compile Include="TimeLines\BaseModel\StaticConfig.cs" />
     <Compile Include="TimeLines\BaseModel\StaticData.cs" />
+    <Compile Include="TimeLines\BaseModel\DataModel.cs" />
     <Compile Include="TimeLines\BaseRoutine\StaticFunction.cs" />
     <Compile Include="TimeLines\TimeBars\TimeBar_Hours.xaml.cs">
       <DependentUpon>TimeBar_Hours.xaml</DependentUpon>
@@ -181,6 +200,10 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\ObjectStore\ObjectStore.csproj">
+      <Project>{8b6ece77-89cf-4001-a3c5-2a4b1acd1ce9}</Project>
+      <Name>ObjectStore</Name>
+    </ProjectReference>
     <ProjectReference Include="..\ToolsBaseClass\ToolsBaseClass.csproj">
       <Project>{8342badc-5b5c-407d-bc60-0af411919e95}</Project>
       <Name>ToolsBaseClass</Name>
@@ -208,9 +231,9 @@
     <Content Include="NetEaseCloudMusicConverter\extern\ncmtrans.exe">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Resource Include="Resources\zoom_out.png" />
+    <Resource Include="Resources\zoom_in.png" />
     <Resource Include="Resources\timeline_today.png" />
-    <Resource Include="Resources\timeline_zoomout.png" />
-    <Resource Include="Resources\timeline_zoomin.png" />
     <Resource Include="Resources\timeline.png" />
     <Resource Include="Resources\PersonalVCard.png" />
     <Resource Include="Resources\LocalPortsReviewer.png" />
