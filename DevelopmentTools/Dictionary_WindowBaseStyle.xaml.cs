@@ -199,7 +199,7 @@ namespace DevelopmentTools
     {
         public static void CloseAnimation(Window window)
         {
-            Grid grid = ((window.Template as ControlTemplate).FindName("WindowGrid", window) as Grid);
+            Grid  grid = ((window.Template as ControlTemplate).FindName("WindowGrid", window) as Grid);
             ScaleTransform rtf = new ScaleTransform();
             rtf.CenterX = 0.5;
             rtf.CenterY = 0.5;
@@ -217,8 +217,6 @@ namespace DevelopmentTools
                 ScaleTransform.ScaleYProperty
        };
             grid.RenderTransform = rtf;
-
-
             DoubleAnimation animationx = new DoubleAnimation(1, 0, new Duration(TimeSpan.FromMilliseconds(200)));
             DoubleAnimation animationy = new DoubleAnimation(1, 0, new Duration(TimeSpan.FromMilliseconds(200)));
             animationx.AutoReverse = false;

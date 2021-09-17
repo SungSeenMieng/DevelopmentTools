@@ -3,8 +3,6 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:DevelopmentTools.Tools.TimeLines"
-        xmlns:timebars="clr-namespace:LifeLines.TimeBars"
         mc:Ignorable="d"
         Title="Linès" Height="450" Width="800" MinWidth="400" MinHeight="360" Loaded="Window_Loaded" MouseWheel="Window_MouseWheel" Background="#3F3F46">
     <Window.Resources>
@@ -277,7 +275,8 @@
         </Grid.RowDefinitions>
         <Rectangle x:Name="BackRect" Grid.RowSpan="3" Fill="#88000000" Width="0" HorizontalAlignment="Left"/>
 
-        <Grid ShowGridLines="True" Background="Transparent" MouseLeftButtonDown="Grid_MouseLeftButtonDown">
+        <ScrollViewer ScrollViewer.VerticalScrollBarVisibility="Hidden" BorderThickness="2" BorderBrush="Black">
+        <Grid Background="Transparent" MouseLeftButtonDown="Grid_MouseLeftButtonDown">
             <Grid.RowDefinitions>
                 <RowDefinition Height="*" MinHeight="20"/>
                 <RowDefinition Height="Auto"/>
@@ -293,9 +292,14 @@
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="*" MinHeight="20"/>
             </Grid.RowDefinitions>
-            <GridSplitter Background="Green" Height="2" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Stretch"/>
+            <GridSplitter Background="Black" Height="1" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Stretch"/>
+            <GridSplitter Background="Black" Height="1" Grid.Row="3" VerticalAlignment="Center" HorizontalAlignment="Stretch"/>
+            <GridSplitter Background="Black" Height="1" Grid.Row="5" VerticalAlignment="Center" HorizontalAlignment="Stretch"/>
+            <GridSplitter Background="Black" Height="1" Grid.Row="7" VerticalAlignment="Center" HorizontalAlignment="Stretch"/>
+            <GridSplitter Background="Black" Height="1" Grid.Row="9" VerticalAlignment="Center" HorizontalAlignment="Stretch"/>
+            <GridSplitter Background="Black" Height="1" Grid.Row="11" VerticalAlignment="Center" HorizontalAlignment="Stretch"/>
         </Grid>
-
+        </ScrollViewer>
         <Slider HorizontalAlignment="Right" VerticalAlignment="Bottom" Minimum="0" Maximum="35" Value="18" Margin="0,0,5,25" Orientation="Vertical" Style="{DynamicResource ZoomSliderStyle}" Height="150" ValueChanged="Slider_ValueChanged">
 
         </Slider>
